@@ -64,6 +64,7 @@
       margin-bottom: 18px;
       border: 1px solid rgba(0,255,200,0.4);
       box-shadow: 0 0 0 1px rgba(0,255,200,0.15) inset;
+      transition: all 0.3s ease; /* ホバー用に滑らかに */
     }
 
     .featured h2 {
@@ -94,6 +95,7 @@
       color: #fff;
       text-decoration: none;
       backdrop-filter: blur(6px);
+      transition: all 0.3s ease; /* ホバー用に滑らかに */
     }
 
     .link span {
@@ -112,10 +114,33 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
+      transition: all 0.3s ease; /* ホバーで光らせる */
     }
 
     .arrow {
       opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    /* ホバーで光らせる */
+    .link:hover {
+      border-color: rgba(0,255,255,0.8);
+      box-shadow: 0 0 12px rgba(0,255,255,0.6);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .link:hover .icon-sm {
+      background: rgba(0,255,255,0.4);
+    }
+
+    .link:hover .arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    .featured:hover {
+      border-color: rgba(0,255,200,0.8);
+      box-shadow: 0 0 12px rgba(0,255,200,0.6) inset;
     }
   </style>
 </head>
@@ -151,5 +176,3 @@
   </div>
 </body>
 </html>
-
-
