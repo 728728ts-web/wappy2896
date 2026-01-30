@@ -36,7 +36,7 @@
       position: relative;
     }
 
-    /* 点滅もやもやアニメ */
+    /* 白もや点滅 */
     .icon::after {
       content: "";
       position: absolute;
@@ -53,156 +53,104 @@
       100% { opacity: 0; transform: scale(1.1); }
     }
 
-    h1 {
-      margin: 0;
-      font-size: 26px;
-      font-weight: 700;
-    }
-
-    .sub {
-      margin-top: 6px;
-      font-size: 14px;
-      color: #9dc3dd;
-    }
-
+    h1 { margin:0; font-size:26px; font-weight:700; }
+    .sub { margin-top:6px; font-size:14px; color:#9dc3dd; }
     .subs {
-      margin: 18px auto 28px;
-      display: inline-block;
-      padding: 8px 18px;
-      border-radius: 999px;
+      margin:18px auto 28px;
+      display:inline-block;
+      padding:8px 18px;
+      border-radius:999px;
       background: rgba(0,180,255,0.15);
-      border: 1px solid rgba(0,180,255,0.4);
-      font-size: 14px;
+      border:1px solid rgba(0,180,255,0.4);
+      font-size:14px;
     }
 
-    /* おすすめカード */
     .featured {
       background: linear-gradient(135deg, #0f6a63, #0a3f55);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 18px;
-      border: 1px solid rgba(0,255,200,0.4);
+      border-radius:16px;
+      padding:18px;
+      margin-bottom:18px;
+      border:1px solid rgba(0,255,200,0.4);
       box-shadow: 0 0 0 1px rgba(0,255,200,0.15) inset;
       transition: all 0.3s ease;
     }
-
-    .featured h2 {
-      margin: 0 0 6px;
-      font-size: 18px;
-    }
-
+    .featured h2 { margin:0 0 6px; font-size:18px; }
     .tag {
-      display: inline-block;
-      margin-top: 6px;
-      padding: 4px 10px;
-      font-size: 12px;
-      border-radius: 999px;
+      display:inline-block;
+      margin-top:6px;
+      padding:4px 10px;
+      font-size:12px;
+      border-radius:999px;
       background: rgba(0,255,160,0.25);
       color: #7dffd8;
     }
 
-    /* リンクボタン */
     .link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 18px;
-      margin-bottom: 12px;
-      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 18px;
+      margin-bottom:12px;
+      border-radius:14px;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
-      color: #fff;
-      text-decoration: none;
+      color:#fff;
+      text-decoration:none;
       backdrop-filter: blur(6px);
       transition: all 0.3s ease;
-      position: relative;
+      position:relative;
     }
 
-    .link span {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 15px;
-      position: relative;
-    }
-
+    .link span { display:flex; align-items:center; gap:10px; font-size:15px; position:relative; }
     .icon-sm {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
+      width:28px; height:28px; border-radius:50%;
       background: rgba(255,255,255,0.15);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      position: relative;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:14px; transition: all 0.3s ease; position:relative;
     }
 
-    /* 小アイコンのもやもや */
+    /* 小アイコン光る */
     .link:hover .icon-sm::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 50%;
-      box-shadow: 0 0 8px 3px rgba(255,255,255,0.6);
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      border-radius:50%;
+      box-shadow:0 0 8px 3px rgba(255,255,255,0.6);
       animation: glow 1.2s infinite alternate;
     }
 
-    .arrow {
-      opacity: 0.6;
-      transition: all 0.3s ease;
+    .arrow { opacity:0.6; transition:all 0.3s ease; }
+    .link:hover { border-color:rgba(0,255,255,0.8); box-shadow:0 0 12px rgba(0,255,255,0.6); background:rgba(255,255,255,0.12); color:#fff; }
+    .link:hover .icon-sm { background: rgba(0,255,255,0.4); }
+    .link:hover .arrow { opacity:1; transform:translateX(3px); }
+    .featured:hover { border-color: rgba(0,255,200,0.8); box-shadow:0 0 12px rgba(0,255,200,0.6) inset; }
+
+    /* 緑もや点滅用 */
+    @keyframes glow-green {
+      0% { opacity:0; transform: scale(0.9); }
+      50% { opacity:0.7; transform: scale(1.05); }
+      100% { opacity:0; transform: scale(1.1); }
     }
 
-    .link:hover {
-      border-color: rgba(0,255,255,0.8);
-      box-shadow: 0 0 12px rgba(0,255,255,0.6);
-      background: rgba(255,255,255,0.12);
-      color: #fff;
+    .secret-img::after {
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      border-radius:50%;
+      box-shadow:0 0 20px 6px rgba(0,255,100,0.7);
+      opacity:0;
+      animation: glow-green 1.5s infinite alternate;
     }
 
-    .link:hover .icon-sm {
-      background: rgba(0,255,255,0.4);
-    }
-
-    .link:hover .arrow {
-      opacity: 1;
-      transform: translateX(3px);
-    }
-
-    .featured:hover {
-      border-color: rgba(0,255,200,0.8);
-      box-shadow: 0 0 12px rgba(0,255,200,0.6) inset;
-    }
-
-    /* 隠しアイコン */
-    #secret-icon {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: #fff;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      box-shadow: 0 0 20px 5px rgba(255,255,255,0.7);
-      z-index: 9999;
-    }
+    .secret-img img { width:80px; height:80px; border-radius:50%; }
 
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="icon">
-      <img src="logo.png" alt="wappy2896ロゴ" style="width:80px; height:80px; border-radius:50%;">
-    </div>
+    <div class="icon"><img src="logo.png" alt="wappy2896ロゴ" style="width:80px;height:80px;border-radius:50%;"></div>
     <h1>wappy2896</h1>
     <div class="sub">YouTuber / Game Creator</div>
-
     <div class="subs">🎉 チャンネル登録者 1.57万人</div>
 
     <div class="featured">
@@ -226,24 +174,45 @@
     <p>(c)wappy2896,naninuneno8603 改変、二次配布禁止</p>
   </div>
 
-  <!-- 隠しアイコン -->
-  <div id="secret-icon">🎉</div>
-
   <script>
-    // 空白連打で隠しアイコン出現
+    // 背景連打で緑もやアイコン大量出現
     let secretClick = 0;
     document.body.addEventListener('click', (e) => {
-      if(e.target.id === 'secret-icon') return;
+      if(e.target.classList.contains('secret-img')) return;
 
       secretClick++;
       if(secretClick >= 5){
-        const icon = document.getElementById('secret-icon');
-        icon.style.display = 'flex';
-        setTimeout(() => { icon.style.display = 'none'; }, 3000);
+        for(let i=0;i<3;i++){ // 一度に3個出す
+          const icon = document.createElement('div');
+          icon.className='secret-img';
+          icon.style.position='fixed';
+          icon.style.width='96px';
+          icon.style.height='96px';
+          icon.style.borderRadius='50%';
+          icon.style.background='#0e2a40';
+          icon.style.display='flex';
+          icon.style.alignItems='center';
+          icon.style.justifyContent='center';
+          icon.style.zIndex=9999;
+          icon.style.left = Math.random()*(window.innerWidth-96)+'px';
+          icon.style.top = Math.random()*(window.innerHeight-96)+'px';
+          icon.style.position='fixed';
+          icon.style.cursor='pointer';
+
+          const img = document.createElement('img');
+          img.src='logo.png';
+          icon.appendChild(img);
+
+          document.body.appendChild(icon);
+
+          // 3秒で消す
+          setTimeout(()=>{ if(icon.parentNode) icon.parentNode.removeChild(icon); },3000);
+        }
+
         secretClick = 0;
       }
 
-      setTimeout(() => { secretClick = 0; }, 1000);
+      setTimeout(()=>{ secretClick=0; },1000);
     });
   </script>
 </body>
