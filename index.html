@@ -13,6 +13,7 @@ body {
   color: #e8f1f8;
   background: radial-gradient(circle at top, #143a55 0%, #081a2b 60%, #05111e 100%);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
@@ -156,21 +157,22 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; }
 .featured:hover { border-color: rgba(0,255,200,0.8); box-shadow: 0 0 12px rgba(0,255,200,0.6) inset; }
 
 /* 隠しアイコン */
-#secret-icon {
-  position: fixed;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:#fff;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  font-size:48px;
-  box-shadow:0 0 20px 5px rgba(255,255,255,0.7);
-  z-index:9999;
+.secret-icon {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  pointer-events: none;
+  animation: popout 2s forwards;
+}
+@keyframes popout {
+  0% { opacity:0; transform: scale(0.5); }
+  30% { opacity:1; transform: scale(1.2); }
+  100% { opacity:0; transform: scale(2) translateY(-50px); }
 }
 </style>
 </head>
@@ -204,19 +206,23 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; }
   <p>(c)wappy2896,naninuneno8603 改変、二次配布禁止</p>
 </div>
 
-<!-- 隠しアイコン -->
-<div id="secret-icon">🎉</div>
-
 <script>
 let secretClick = 0;
-document.body.addEventListener('click', (e) => {
-  if(e.target.id === 'secret-icon') return;
+document.body.addEventListener('click', (e)=>{
   secretClick++;
+  if(e.target.closest('.icon')) return; // 上アイコンクリックは除外
   if(secretClick >= 5){
-    const icon = document.getElementById('secret-icon');
-    icon.style.display = 'flex';
-    setTimeout(() => { icon.style.display = 'none'; }, 3000);
-    secretClick = 0;
+    // ランダムに複数個出す
+    for(let i=0;i<5;i++){
+      const s = document.createElement('div');
+      s.className = 'secret-icon';
+      s.style.top = Math.random()*window.innerHeight + 'px';
+      s.style.left = Math.random()*window.innerWidth + 'px';
+      s.innerHTML = '<img src="logo.png" style="width:80px;height:80px;border-radius:50%;">';
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),2000); // 2秒で消す
+    }
+    secretClick=0;
   }
   setTimeout(()=>{secretClick=0;},1000);
 });
