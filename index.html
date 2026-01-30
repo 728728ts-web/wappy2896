@@ -1,231 +1,250 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<title>wappy2896 公式サイト</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<style>
-* { box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <title>wappy2896 公式サイト</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; }
 
-body { 
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  color: #e8f1f8;
-  background: radial-gradient(circle at top, #143a55 0%, #081a2b 60%, #05111e 100%);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+    body { 
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: #e8f1f8;
+      background: radial-gradient(circle at top, #143a55 0%, #081a2b 60%, #05111e 100%);
+      min-height: 100vh;
+    }
 
-.container {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 32px 16px 60px;
-  text-align: center;
-}
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 32px 16px 60px;
+      text-align: center;
+    }
 
-/* 大アイコン */
-.icon {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: #0e2a40;
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  position: relative;
-}
+    /* 大アイコン */
+    .icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #0e2a40;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      position: relative;
+    }
 
-/* 緑もやもやアニメ */
-.icon::after {
-  content: "";
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  background: rgba(0,255,0,0.2);
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 0;
-  animation: greenGlow 1.5s infinite;
-}
+    /* 点滅もやもやアニメ */
+    .icon::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 15px 5px rgba(255,255,255,0.6);
+      opacity: 0;
+      animation: glow 1.5s infinite alternate;
+    }
 
-@keyframes greenGlow {
-  0% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 0 15px 5px rgba(0,255,0,0.6);
-  }
-  50% {
-    opacity: 0.4;
-    transform: translate(-50%, -50%) scale(1.5);
-    box-shadow: 0 0 25px 15px rgba(0,255,0,0.4);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(2);
-    box-shadow: 0 0 40px 25px rgba(0,255,0,0);
-  }
-}
+    @keyframes glow {
+      0% { opacity: 0; transform: scale(0.9); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+      100% { opacity: 0; transform: scale(1.1); }
+    }
 
-h1 { margin: 0; font-size: 26px; font-weight: 700; }
-.sub { margin-top: 6px; font-size: 14px; color: #9dc3dd; }
-.subs {
-  margin: 18px auto 28px;
-  display: inline-block;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: rgba(0,180,255,0.15);
-  border: 1px solid rgba(0,180,255,0.4);
-  font-size: 14px;
-}
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+    }
 
-/* おすすめカード */
-.featured {
-  background: linear-gradient(135deg, #0f6a63, #0a3f55);
-  border-radius: 16px;
-  padding: 18px;
-  margin-bottom: 18px;
-  border: 1px solid rgba(0,255,200,0.4);
-  box-shadow: 0 0 0 1px rgba(0,255,200,0.15) inset;
-  transition: all 0.3s ease;
-}
-.featured h2 { margin: 0 0 6px; font-size: 18px; }
-.tag {
-  display: inline-block;
-  margin-top: 6px;
-  padding: 4px 10px;
-  font-size: 12px;
-  border-radius: 999px;
-  background: rgba(0,255,160,0.25);
-  color: #7dffd8;
-}
+    .sub {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #9dc3dd;
+    }
 
-/* リンクボタン */
-.link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 18px;
-  margin-bottom: 12px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #fff;
-  text-decoration: none;
-  backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
-  position: relative;
-}
-.link span {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  position: relative;
-}
-.icon-sm {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-.link:hover .icon-sm::after {
-  content: "";
-  position: absolute;
-  top:0; left:0; right:0; bottom:0;
-  border-radius:50%;
-  box-shadow:0 0 8px 3px rgba(255,255,255,0.6);
-  animation: glow 1.2s infinite alternate;
-}
-@keyframes glow {
-  0% { opacity:0; transform: scale(0.9); }
-  50% { opacity:0.6; transform: scale(1.05); }
-  100% { opacity:0; transform: scale(1.1); }
-}
+    .subs {
+      margin: 18px auto 28px;
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(0,180,255,0.15);
+      border: 1px solid rgba(0,180,255,0.4);
+      font-size: 14px;
+    }
 
-.arrow { opacity: 0.6; transition: all 0.3s ease; }
-.link:hover { border-color: rgba(0,255,255,0.8); box-shadow:0 0 12px rgba(0,255,255,0.6); background: rgba(255,255,255,0.12); }
-.link:hover .icon-sm { background: rgba(0,255,255,0.4); }
-.link:hover .arrow { opacity:1; transform: translateX(3px); }
-.featured:hover { border-color: rgba(0,255,200,0.8); box-shadow: 0 0 12px rgba(0,255,200,0.6) inset; }
+    /* おすすめカード */
+    .featured {
+      background: linear-gradient(135deg, #0f6a63, #0a3f55);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(0,255,200,0.4);
+      box-shadow: 0 0 0 1px rgba(0,255,200,0.15) inset;
+      transition: all 0.3s ease;
+    }
 
-/* 隠しアイコン */
-.secret-icon {
-  position: absolute;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  pointer-events: none;
-  animation: popout 2s forwards;
-}
-@keyframes popout {
-  0% { opacity:0; transform: scale(0.5); }
-  30% { opacity:1; transform: scale(1.2); }
-  100% { opacity:0; transform: scale(2) translateY(-50px); }
-}
-</style>
+    .featured h2 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: rgba(0,255,160,0.25);
+      color: #7dffd8;
+    }
+
+    /* リンクボタン */
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .link span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      position: relative;
+    }
+
+    .icon-sm {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    /* 小アイコンのもやもや */
+    .link:hover .icon-sm::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 8px 3px rgba(255,255,255,0.6);
+      animation: glow 1.2s infinite alternate;
+    }
+
+    .arrow {
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .link:hover {
+      border-color: rgba(0,255,255,0.8);
+      box-shadow: 0 0 12px rgba(0,255,255,0.6);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .link:hover .icon-sm {
+      background: rgba(0,255,255,0.4);
+    }
+
+    .link:hover .arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    .featured:hover {
+      border-color: rgba(0,255,200,0.8);
+      box-shadow: 0 0 12px rgba(0,255,200,0.6) inset;
+    }
+
+    /* 隠しアイコン */
+    #secret-icon {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      box-shadow: 0 0 20px 5px rgba(255,255,255,0.7);
+      z-index: 9999;
+    }
+
+  </style>
 </head>
 <body>
-<div class="container">
-  <div class="icon">
-    <img src="logo.png" alt="wappy2896ロゴ" style="width:80px; height:80px; border-radius:50%;">
+  <div class="container">
+    <div class="icon">
+      <img src="logo.png" alt="wappy2896ロゴ" style="width:80px; height:80px; border-radius:50%;">
+    </div>
+    <h1>wappy2896</h1>
+    <div class="sub">YouTuber / Game Creator</div>
+
+    <div class="subs">🎉 チャンネル登録者 1.57万人</div>
+
+    <div class="featured">
+      <h2>おすすめコンテンツ</h2>
+      <div>最新動画・企画まとめ</div>
+      <h3>過去最高再生！</h3>
+      <a href="https://youtube.com/shorts/NmZoZLneWo8?si=rlTK-5dB69kvUUvT" target="_blank">最高再生数の動画はこちら</a>
+      <div class="tag">おすすめ</div>
+    </div>
+
+    <a class="link" href="https://www.youtube.com/@wappy2896" target="_blank">
+      <span><div class="icon-sm">▶</div>YouTube</span>
+      <div class="arrow">›</div>
+    </a>
+
+    <a class="link" href="https://discord.gg/tZKmcYxAKW" target="_blank">
+      <span><div class="icon-sm">💬</div>Discord</span>
+      <div class="arrow">›</div>
+    </a>
+
+    <p>(c)wappy2896,naninuneno8603 改変、二次配布禁止</p>
   </div>
-  <h1>wappy2896</h1>
-  <div class="sub">YouTuber / Game Creator</div>
-  <div class="subs">🎉 チャンネル登録者 1.57万人</div>
 
-  <div class="featured">
-    <h2>おすすめコンテンツ</h2>
-    <div>最新動画・企画まとめ</div>
-    <h3>過去最高再生！</h3>
-    <a href="https://youtube.com/shorts/NmZoZLneWo8?si=rlTK-5dB69kvUUvT" target="_blank">最高再生数の動画はこちら</a>
-    <div class="tag">おすすめ</div>
-  </div>
+  <!-- 隠しアイコン -->
+  <div id="secret-icon">🎉</div>
 
-  <a class="link" href="https://www.youtube.com/@wappy2896" target="_blank">
-    <span><div class="icon-sm">▶</div>YouTube</span>
-    <div class="arrow">›</div>
-  </a>
+  <script>
+    // 空白連打で隠しアイコン出現
+    let secretClick = 0;
+    document.body.addEventListener('click', (e) => {
+      if(e.target.id === 'secret-icon') return;
 
-  <a class="link" href="https://discord.gg/tZKmcYxAKW" target="_blank">
-    <span><div class="icon-sm">💬</div>Discord</span>
-    <div class="arrow">›</div>
-  </a>
+      secretClick++;
+      if(secretClick >= 5){
+        const icon = document.getElementById('secret-icon');
+        icon.style.display = 'flex';
+        setTimeout(() => { icon.style.display = 'none'; }, 3000);
+        secretClick = 0;
+      }
 
-  <p>(c)wappy2896,naninuneno8603 改変、二次配布禁止</p>
-</div>
-
-<script>
-let secretClick = 0;
-document.body.addEventListener('click', (e)=>{
-  secretClick++;
-  if(e.target.closest('.icon')) return; // 上アイコンクリックは除外
-  if(secretClick >= 5){
-    // ランダムに複数個出す
-    for(let i=0;i<5;i++){
-      const s = document.createElement('div');
-      s.className = 'secret-icon';
-      s.style.top = Math.random()*window.innerHeight + 'px';
-      s.style.left = Math.random()*window.innerWidth + 'px';
-      s.innerHTML = '<img src="logo.png" style="width:80px;height:80px;border-radius:50%;">';
-      document.body.appendChild(s);
-      setTimeout(()=>s.remove(),2000); // 2秒で消す
-    }
-    secretClick=0;
-  }
-  setTimeout(()=>{secretClick=0;},1000);
-});
-</script>
+      setTimeout(() => { secretClick = 0; }, 1000);
+    });
+  </script>
 </body>
 </html>
