@@ -15,6 +15,9 @@ body {
   min-height: 100vh;
 }
 
+/* ★ 追加：リンクを白色に */
+a { color: #fff; }
+
 .container {
   max-width: 420px;
   margin: 0 auto;
@@ -160,10 +163,11 @@ h1 { margin:0; font-size:26px; font-weight:700; }
     <h2>おすすめコンテンツ</h2>
     <div>最新動画・企画まとめ</div>
     <h3>過去最高再生！</h3>
-    <a href="https://youtube.com/shorts/NmZoZLneWo8?si=rlTK-5dB69kvUUvT" target="_blank">最高再生数の動画はこちら</a>
+    <a href="https://youtube.com/shorts/NmZoZLneWo8?si=rlTK-5dB69kvUUvT" target="_blank">
+      最高再生数の動画はこちら
+    </a>
     <div class="tag">おすすめ</div>
   </div>
-  
 
   <a class="link" href="https://www.youtube.com/@wappy2896" target="_blank">
     <span><div class="icon-sm">▶</div>YouTube</span>
@@ -177,8 +181,6 @@ h1 { margin:0; font-size:26px; font-weight:700; }
 
   <p>(c)wappy2896,naninuneno8603 改変、二次配布禁止</p>
 
- 
-
 <script>
 let secretClick = 0;
 document.body.addEventListener('click',(e)=>{
@@ -186,7 +188,7 @@ document.body.addEventListener('click',(e)=>{
 
   secretClick++;
   if(secretClick>=5){
-    const count = 5 + Math.floor(Math.random()*3); // 5〜7個出現
+    const count = 5 + Math.floor(Math.random()*3);
     for(let i=0;i<count;i++){
       const icon=document.createElement('div');
       icon.className='secret-img';
@@ -216,12 +218,7 @@ document.body.addEventListener('click',(e)=>{
   setTimeout(()=>{ secretClick=0; },1000);
 });
 </script>
-  
+
+</div>
 </body>
 </html>
-
-
-
-
-
-
