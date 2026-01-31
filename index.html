@@ -136,6 +136,17 @@ h1 { margin:0; font-size:26px; font-weight:700; }
 
 .secret-img img { width:80px; height:80px; border-radius:50%; }
 
+/* 広告中央揃え横並び */
+.ad-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+.ad-slot {
+  display: flex;
+  justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -164,6 +175,16 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   </a>
 
   <p>(c)wappy2896,naninuneno8603 改変、二次配布禁止</p>
+
+  <!-- 広告 -->
+  <div class="ad-container">
+    <div class="ad-slot">
+      <script src="https://adm.shinobi.jp/s/a0cd63aae7ab78e806e3cd12cc1bacdf"></script>
+    </div>
+    <div class="ad-slot">
+      <script src="https://adm.shinobi.jp/s/7a346cef4a1bb3183e8e128a37a94fbd"></script>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -188,7 +209,6 @@ document.body.addEventListener('click',(e)=>{
       icon.style.zIndex=9999;
       icon.style.left = Math.random()*(window.innerWidth-96)+'px';
       icon.style.top = Math.random()*(window.innerHeight-96)+'px';
-      icon.style.position='fixed';
       icon.style.cursor='pointer';
 
       const img=document.createElement('img');
@@ -204,13 +224,5 @@ document.body.addEventListener('click',(e)=>{
   setTimeout(()=>{ secretClick=0; },1000);
 });
 </script>
-  <!-- admax -->
-<script src="https://adm.shinobi.jp/s/a0cd63aae7ab78e806e3cd12cc1bacdf"></script>
-<!-- admax -->
-  <!-- admax -->
-<script src="https://adm.shinobi.jp/s/7a346cef4a1bb3183e8e128a37a94fbd"></script>
-<!-- admax -->
 </body>
 </html>
-
-
