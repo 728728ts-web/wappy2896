@@ -12,12 +12,12 @@ body {
   font-family: "Segoe UI", sans-serif;
   color: #e8f1f8;
   background:
-    radial-gradient(circle at top, #143a55 0%, #081a2b 60%, #05111e 100%);
+    radial-gradient(circle at top, #143a55 0%, #081a2b 60%, #020914 100%);
   min-height: 100vh;
   overflow:hidden;
 }
 
-/* 星 */
+/* ===== 星 ===== */
 .star {
   position: fixed;
   width: 2px;
@@ -47,10 +47,9 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: visible;
 }
 
-/* 円の外で「ぱっ」と広がって止まる白もや */
+/* ぱっと広がって止まる白もや */
 .icon::after {
   content: "";
   position: absolute;
@@ -71,22 +70,10 @@ body {
 }
 
 @keyframes puff-glow {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-  60% {
-    opacity: 0.9;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
+  0%   { opacity:0; transform:scale(0.9); }
+  20%  { opacity:1; transform:scale(1.08); }
+  60%  { opacity:0.9; transform:scale(1.1); }
+  100% { opacity:0; transform:scale(1.1); }
 }
 
 h1 { margin:0; font-size:26px; font-weight:700; }
@@ -99,6 +86,37 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   background: rgba(0,180,255,0.15);
   border:1px solid rgba(0,180,255,0.4);
   font-size:14px;
+}
+
+/* ===== おすすめ ===== */
+.featured {
+  background: linear-gradient(135deg, #0f6a63, #0a3f55);
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:20px;
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:
+    inset 0 0 12px rgba(255,255,255,0.2),
+    0 0 18px rgba(0,255,255,0.25);
+}
+
+.featured h2 {
+  margin:0 0 6px;
+  font-size:18px;
+}
+
+.featured a {
+  color:#aefcff;
+  text-decoration:none;
+}
+
+.tag {
+  display:inline-block;
+  margin-top:10px;
+  padding:4px 10px;
+  font-size:12px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.25);
 }
 
 /* ===== リンク ===== */
@@ -139,6 +157,16 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   <div class="sub">YouTuber</div>
   <div class="subs">🎉 チャンネル登録者 1.61万人</div>
 
+  <!-- ★おすすめ -->
+  <div class="featured">
+    <h2>おすすめコンテンツ</h2>
+    <div>過去最高再生🔥</div>
+    <a href="https://youtube.com/shorts/NmZoZLneWo8?si=rlTK-5dB69kvUUvT" target="_blank">
+      最高再生数の動画はこちら
+    </a>
+    <div class="tag">おすすめ</div>
+  </div>
+
   <a class="link" href="https://www.youtube.com/@wappy2896" target="_blank">
     <span>▶ YouTube</span>
     <div class="arrow">›</div>
@@ -153,14 +181,14 @@ h1 { margin:0; font-size:26px; font-weight:700; }
 </div>
 
 <script>
-/* 星をランダム生成 */
-for(let i=0;i<80;i++){
+/* 星ランダム生成 */
+for(let i=0;i<90;i++){
   const s=document.createElement('div');
   s.className='star';
   s.style.left=Math.random()*innerWidth+'px';
   s.style.top=Math.random()*innerHeight+'px';
   s.style.opacity=Math.random();
-  s.style.transform=`scale(${Math.random()*1.5+0.5})`;
+  s.style.transform=`scale(${Math.random()*1.6+0.4})`;
   document.body.appendChild(s);
 }
 </script>
