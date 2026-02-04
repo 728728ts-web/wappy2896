@@ -17,7 +17,7 @@ body {
   overflow:hidden;
 }
 
-/* ===== 星 ===== */
+/* 星 */
 .star {
   position: fixed;
   width: 2px;
@@ -49,31 +49,43 @@ body {
   position: relative;
 }
 
-/* ぱっと広がって止まる白もや */
+/* 枠だけ光る白もや */
 .icon::after {
   content: "";
   position: absolute;
-  inset: -6px;
+  inset: -8px;
   border-radius: 50%;
   background:
     radial-gradient(circle,
-      rgba(255,255,255,0.9) 0%,
-      rgba(255,255,255,0.5) 35%,
-      rgba(255,255,255,0.25) 55%,
-      rgba(255,255,255,0.1) 70%,
-      transparent 75%);
+      transparent 55%,
+      rgba(255,255,255,0.25) 65%,
+      rgba(255,255,255,0.7) 72%,
+      rgba(255,255,255,0.4) 78%,
+      transparent 85%);
   filter: blur(6px);
   opacity: 0;
-  transform: scale(0.9);
-  animation: puff-glow 2.2s infinite;
+  transform: scale(0.95);
+  animation: ring-puff 2.4s infinite;
   pointer-events: none;
 }
 
-@keyframes puff-glow {
-  0%   { opacity:0; transform:scale(0.9); }
-  20%  { opacity:1; transform:scale(1.08); }
-  60%  { opacity:0.9; transform:scale(1.1); }
-  100% { opacity:0; transform:scale(1.1); }
+@keyframes ring-puff {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  60% {
+    opacity: 0.8;
+    transform: scale(1.07);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.07);
+  }
 }
 
 h1 { margin:0; font-size:26px; font-weight:700; }
@@ -95,9 +107,6 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   padding:18px;
   margin-bottom:20px;
   border:1px solid rgba(255,255,255,0.35);
-  box-shadow:
-    inset 0 0 12px rgba(255,255,255,0.2),
-    0 0 18px rgba(0,255,255,0.25);
 }
 
 .featured h2 {
@@ -157,7 +166,6 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   <div class="sub">YouTuber</div>
   <div class="subs">🎉 チャンネル登録者 1.61万人</div>
 
-  <!-- ★おすすめ -->
   <div class="featured">
     <h2>おすすめコンテンツ</h2>
     <div>過去最高再生🔥</div>
