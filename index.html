@@ -15,7 +15,6 @@ body {
   min-height: 100vh;
 }
 
-/* ★ 追加：リンクの色 */
 a { color: #7fffd4; }
 
 .container {
@@ -25,7 +24,7 @@ a { color: #7fffd4; }
   text-align: center;
 }
 
-/* 大アイコン */
+/* ===== メインアイコン ===== */
 .icon {
   width: 96px;
   height: 96px;
@@ -35,25 +34,30 @@ a { color: #7fffd4; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 42px;
   position: relative;
 }
 
-/* 緑もや点滅 */
+/* 白発光が外に抜ける */
 .icon::after {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: -10px;
   border-radius: 50%;
-  box-shadow: 0 0 15px 5px rgba(0,255,100,0.7);
+  border: 2px solid rgba(255,255,255,0.95);
+  box-shadow:
+    0 0 12px rgba(255,255,255,1),
+    0 0 35px rgba(255,255,255,0.7),
+    0 0 70px rgba(255,255,255,0.4);
   opacity: 0;
-  animation: glow-green 1.5s infinite alternate;
+  animation: glow-out 1.8s infinite ease-out;
+  pointer-events: none;
 }
 
-@keyframes glow-green {
-  0% { opacity:0; transform: scale(0.9); }
-  50% { opacity:0.7; transform: scale(1.05); }
-  100% { opacity:0; transform: scale(1.1); }
+@keyframes glow-out {
+  0%   { opacity:0; transform:scale(0.85); }
+  25%  { opacity:1; }
+  60%  { opacity:0.7; }
+  100% { opacity:0; transform:scale(1.45); }
 }
 
 h1 { margin:0; font-size:26px; font-weight:700; }
@@ -68,26 +72,28 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   font-size:14px;
 }
 
+/* ===== おすすめ ===== */
 .featured {
   background: linear-gradient(135deg, #0f6a63, #0a3f55);
   border-radius:16px;
   padding:18px;
   margin-bottom:18px;
-  border:1px solid rgba(0,255,200,0.4);
-  box-shadow: 0 0 0 1px rgba(0,255,200,0.15) inset;
-  transition: all 0.3s ease;
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.2);
 }
 .featured h2 { margin:0 0 6px; font-size:18px; }
+
 .tag {
   display:inline-block;
   margin-top:6px;
   padding:4px 10px;
   font-size:12px;
   border-radius:999px;
-  background: rgba(0,255,160,0.25);
-  color: #7dffd8;
+  background: rgba(255,255,255,0.25);
+  color:#fff;
 }
 
+/* ===== リンク ===== */
 .link {
   display:flex;
   align-items:center;
@@ -104,69 +110,90 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   position:relative;
 }
 
-.link span { display:flex; align-items:center; gap:10px; font-size:15px; position:relative; }
+.link span { display:flex; align-items:center; gap:10px; }
+
 .icon-sm {
-  width:28px; height:28px; border-radius:50%;
+  width:28px;
+  height:28px;
+  border-radius:50%;
   background: rgba(255,255,255,0.15);
-  display:inline-flex; align-items:center; justify-content:center;
-  font-size:14px; transition: all 0.3s ease; position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
 }
 
+/* hover 白発光 */
 .link:hover .icon-sm::after {
   content:"";
   position:absolute;
-  top:0; left:0; right:0; bottom:0;
+  inset:-6px;
   border-radius:50%;
-  box-shadow:0 0 8px 3px rgba(255,255,255,0.6);
-  animation: glow-green 1.2s infinite alternate;
+  border:1px solid rgba(255,255,255,0.9);
+  box-shadow:
+    0 0 8px rgba(255,255,255,0.9),
+    0 0 18px rgba(255,255,255,0.6);
+  animation: glow-out 1.2s infinite ease-out;
 }
 
-.arrow { opacity:0.6; transition:all 0.3s ease; }
-.link:hover { border-color:rgba(0,255,255,0.8); box-shadow:0 0 12px rgba(0,255,255,0.6); background:rgba(255,255,255,0.12); color:#fff; }
-.link:hover .icon-sm { background: rgba(0,255,255,0.4); }
-.link:hover .arrow { opacity:1; transform:translateX(3px); }
-.featured:hover { border-color: rgba(0,255,200,0.8); box-shadow:0 0 12px rgba(0,255,200,0.6) inset; }
+.arrow { opacity:0.6; }
+.link:hover {
+  border-color:#fff;
+  box-shadow:0 0 14px rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.15);
+}
+.link:hover .arrow { opacity:1; transform:translateX(4px); }
+
+/* ===== 隠し演出 ===== */
+.secret-img {
+  position:fixed;
+  width:96px;
+  height:96px;
+  border-radius:50%;
+  background:#0e2a40;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.secret-img img {
+  width:80px;
+  height:80px;
+  border-radius:50%;
+}
 
 .secret-img::after {
   content:"";
   position:absolute;
-  top:0; left:0; right:0; bottom:0;
+  inset:-14px;
   border-radius:50%;
-  box-shadow:0 0 20px 6px rgba(0,255,100,0.7);
-  opacity:0;
-  animation: glow-green 1.5s infinite alternate;
-}
-
-.secret-img img { width:80px; height:80px; border-radius:50%; }
-
-/* 広告中央揃え横並び */
-.ad-container {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin: 20px 0;
-}
-.ad-slot {
-  display: flex;
-  justify-content: center;
+  border:2px solid rgba(255,255,255,1);
+  box-shadow:
+    0 0 18px rgba(255,255,255,1),
+    0 0 45px rgba(255,255,255,0.7),
+    0 0 90px rgba(255,255,255,0.4);
+  animation: glow-out 1.4s infinite ease-out;
 }
 </style>
 </head>
+
 <body>
 <div class="container">
-  <div class="icon"><img src="logo.png" alt="wappy2896ロゴ" style="width:80px;height:80px;border-radius:50%;"></div>
+  <div class="icon">
+    <img src="logo.png" style="width:80px;height:80px;border-radius:50%;">
+  </div>
+
   <h1>wappy2896</h1>
   <div class="sub">YouTuber</div>
   <div class="subs">🎉 チャンネル登録者 1.61万人</div>
 
   <div class="featured">
     <h2>おすすめコンテンツ</h2>
-    <div>最新動画・企画まとめ</div>
-    <h3>過去最高再生！</h3>
+    <div>過去最高再生！</div>
     <a href="https://youtube.com/shorts/NmZoZLneWo8?si=rlTK-5dB69kvUUvT" target="_blank">
       最高再生数の動画はこちら
     </a>
-    </p>
     <div class="tag">おすすめ</div>
   </div>
 
@@ -180,50 +207,31 @@ h1 { margin:0; font-size:26px; font-weight:700; }
     <div class="arrow">›</div>
   </a>
 
-  <p>(c)wappy2896,naninuneno8603 改変、二次配布禁止</p>
+  <p>(c)wappy2896,naninuneno8603 改変・二次配布禁止</p>
+</div>
 
 <script>
 let secretClick = 0;
-document.body.addEventListener('click',(e)=>{
-  if(e.target.classList.contains('secret-img')) return;
-
+document.body.addEventListener('click', () => {
   secretClick++;
-  if(secretClick>=5){
-    const count = 5 + Math.floor(Math.random()*3);
-    for(let i=0;i<count;i++){
-      const icon=document.createElement('div');
-      icon.className='secret-img';
-      icon.style.position='fixed';
-      icon.style.width='96px';
-      icon.style.height='96px';
-      icon.style.borderRadius='50%';
-      icon.style.background='#0e2a40';
-      icon.style.display='flex';
-      icon.style.alignItems='center';
-      icon.style.justifyContent='center';
-      icon.style.zIndex=9999;
-      icon.style.left = Math.random()*(window.innerWidth-96)+'px';
-      icon.style.top = Math.random()*(window.innerHeight-96)+'px';
-      icon.style.cursor='pointer';
+  if (secretClick >= 5) {
+    for (let i = 0; i < 6; i++) {
+      const icon = document.createElement('div');
+      icon.className = 'secret-img';
+      icon.style.left = Math.random()*(innerWidth-96)+'px';
+      icon.style.top  = Math.random()*(innerHeight-96)+'px';
 
-      const img=document.createElement('img');
-      img.src='logo.png';
+      const img = document.createElement('img');
+      img.src = 'logo.png';
       icon.appendChild(img);
 
       document.body.appendChild(icon);
-
-      setTimeout(()=>{ if(icon.parentNode) icon.parentNode.removeChild(icon); },3000);
+      setTimeout(()=>icon.remove(),3000);
     }
-    secretClick=0;
+    secretClick = 0;
   }
-  setTimeout(()=>{ secretClick=0; },1000);
+  setTimeout(()=>secretClick=0,800);
 });
 </script>
-
-</div>
 </body>
 </html>
-
-
-
-
