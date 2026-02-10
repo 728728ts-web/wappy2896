@@ -16,7 +16,8 @@ body {
   background:
     radial-gradient(circle at top, #143a55 0%, #081a2b 60%, #020914 100%);
   min-height: 100vh;
-  overflow:hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* 星 */
@@ -34,11 +35,11 @@ body {
   margin: 0 auto;
   padding: 32px 16px 60px;
   text-align: center;
-  position:relative;
-  z-index:2;
+  position: relative;
+  z-index: 2;
 }
 
-/* ===== アイコン ===== */
+/* アイコン */
 .icon {
   width: 96px;
   height: 96px;
@@ -77,7 +78,7 @@ body {
 h1 { margin:0; font-size:26px; }
 .sub { margin-top:6px; font-size:14px; color:#9dc3dd; }
 
-/* ===== 登録者数 ===== */
+/* 登録者数 */
 .subs {
   margin:18px auto 12px;
   display:inline-block;
@@ -88,14 +89,22 @@ h1 { margin:0; font-size:26px; }
   font-size:14px;
 }
 
-/* ★ YouTubeボタンを完全に独立させる */
+/* 登録案内 */
+.sub-text {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #aefcff;
+  letter-spacing: 2px;
+}
+
+/* YouTubeボタン隔離 */
 .yt-wrap {
-  margin: 8px auto 24px;
+  margin: 6px auto 26px;
   display: flex;
   justify-content: center;
 }
 
-/* ===== おすすめ ===== */
+/* おすすめ */
 .featured {
   background: linear-gradient(135deg, #0f6a63, #0a3f55);
   border-radius:16px;
@@ -104,7 +113,28 @@ h1 { margin:0; font-size:26px; }
   border:1px solid rgba(255,255,255,0.35);
 }
 
-/* ===== リンク ===== */
+.featured h2 {
+  margin: 0 0 6px;
+}
+
+/* 最高再生リンク強調 */
+.best-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #00f2ff, #00ffa2);
+  color: #003344;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 12px rgba(0,255,255,0.6);
+}
+
+.best-link:hover {
+  box-shadow: 0 0 20px rgba(0,255,255,0.9);
+}
+
+/* リンク */
 .link {
   display:flex;
   align-items:center;
@@ -133,13 +163,12 @@ h1 { margin:0; font-size:26px; }
   <h1>wappy2896</h1>
   <div class="sub">YouTuber</div>
 
-  <!-- 登録者数 -->
   <div class="subs" id="subCount">
     🎉 チャンネル登録者 読み込み中...
   </div>
-  <p>↓登録↓</p>
 
-  <!-- ★ YouTube登録ボタンを専用ラッパーに隔離 -->
+  <div class="sub-text">↓ 登録 ↓</div>
+
   <div class="yt-wrap">
     <script src="https://apis.google.com/js/platform.js"></script>
     <div class="g-ytsubscribe"
@@ -152,8 +181,10 @@ h1 { margin:0; font-size:26px; }
   <div class="featured">
     <h2>おすすめコンテンツ</h2>
     <div>過去最高再生🔥</div>
-    <a href="https://youtube.com/shorts/NmZoZLneWo8" target="_blank">
-      最高再生数の動画はこちら
+    <a class="best-link"
+       href="https://youtube.com/shorts/NmZoZLneWo8"
+       target="_blank">
+      ▶ 最高再生数の動画はこちら
     </a>
   </div>
 
@@ -196,7 +227,7 @@ if(savedDate === today && savedSubs){
     .then(r=>r.json())
     .then(d=>{
       const n = Number(d.items[0].statistics.subscriberCount);
-      const t = n>=10000 ? (n/10000).toFixed(2)+"万人" : n;
+      const t = n>=10000 ? (n/10000).toFixed(2)+"万人" : n.toLocaleString();
       localStorage.setItem("subDate", today);
       localStorage.setItem("subCount", t);
       subCount.textContent = "🎉 チャンネル登録者 " + t;
@@ -206,4 +237,3 @@ if(savedDate === today && savedSubs){
 
 </body>
 </html>
-
