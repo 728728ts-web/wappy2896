@@ -5,6 +5,7 @@
 <title>wappy2896 公式サイト</title>
 <link rel="icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <style>
 * { box-sizing: border-box; }
 
@@ -37,7 +38,7 @@ body {
   z-index:2;
 }
 
-/* ===== メインアイコン ===== */
+/* ===== アイコン ===== */
 .icon {
   width: 96px;
   height: 96px;
@@ -50,7 +51,6 @@ body {
   position: relative;
 }
 
-/* 枠だけ光る白もや */
 .icon::after {
   content: "";
   position: absolute;
@@ -64,8 +64,6 @@ body {
       rgba(255,255,255,0.4) 78%,
       transparent 85%);
   filter: blur(6px);
-  opacity: 0;
-  transform: scale(0.95);
   animation: ring-puff 2.4s infinite;
   pointer-events: none;
 }
@@ -73,20 +71,28 @@ body {
 @keyframes ring-puff {
   0% { opacity: 0; transform: scale(0.95); }
   20% { opacity: 1; transform: scale(1.05); }
-  60% { opacity: 0.8; transform: scale(1.07); }
   100% { opacity: 0; transform: scale(1.07); }
 }
 
-h1 { margin:0; font-size:26px; font-weight:700; }
+h1 { margin:0; font-size:26px; }
 .sub { margin-top:6px; font-size:14px; color:#9dc3dd; }
+
+/* ===== 登録者数 ===== */
 .subs {
-  margin:18px auto 28px;
+  margin:18px auto 12px;
   display:inline-block;
   padding:8px 18px;
   border-radius:999px;
   background: rgba(0,180,255,0.15);
   border:1px solid rgba(0,180,255,0.4);
   font-size:14px;
+}
+
+/* ★ YouTubeボタンを完全に独立させる */
+.yt-wrap {
+  margin: 8px auto 24px;
+  display: flex;
+  justify-content: center;
 }
 
 /* ===== おすすめ ===== */
@@ -96,25 +102,6 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   padding:18px;
   margin-bottom:20px;
   border:1px solid rgba(255,255,255,0.35);
-}
-
-.featured h2 {
-  margin:0 0 6px;
-  font-size:18px;
-}
-
-.featured a {
-  color:#aefcff;
-  text-decoration:none;
-}
-
-.tag {
-  display:inline-block;
-  margin-top:10px;
-  padding:4px 10px;
-  font-size:12px;
-  border-radius:999px;
-  background: rgba(255,255,255,0.25);
 }
 
 /* ===== リンク ===== */
@@ -129,85 +116,71 @@ h1 { margin:0; font-size:26px; font-weight:700; }
   border: 1px solid rgba(255,255,255,0.15);
   color:#fff;
   text-decoration:none;
-  backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
 }
-
-.link:hover {
-  border-color:#fff;
-  box-shadow:0 0 14px rgba(255,255,255,0.6);
-  background:rgba(255,255,255,0.15);
-}
-
-  .g-ytsubscribe {
-  display: block;
-  margin: 12px auto 0;
-}
-
 
 .arrow { opacity:0.6; }
-.link:hover .arrow { opacity:1; transform:translateX(4px); }
-
-
-
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
   <div class="icon">
     <img src="logo.png" style="width:80px;height:80px;border-radius:50%;">
   </div>
 
   <h1>wappy2896</h1>
   <div class="sub">YouTuber</div>
-  <div class="subs" id="subCount">🎉 チャンネル登録者 読み込み中...</div>
 
-  <script src="https://apis.google.com/js/platform.js"></script>
-  <div class="g-ytsubscribe"
-       data-channelid="UC5rcVpwFUjCfdVglFwrvlsQ"
-       data-layout="full"
-       data-count="default">
+  <!-- 登録者数 -->
+  <div class="subs" id="subCount">
+    🎉 チャンネル登録者 読み込み中...
+  </div>
+
+  <!-- ★ YouTube登録ボタンを専用ラッパーに隔離 -->
+  <div class="yt-wrap">
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <div class="g-ytsubscribe"
+         data-channelid="UC5rcVpwFUjCfdVglFwrvlsQ"
+         data-layout="default"
+         data-count="default">
+    </div>
   </div>
 
   <div class="featured">
     <h2>おすすめコンテンツ</h2>
     <div>過去最高再生🔥</div>
-    <a href="https://youtube.com/shorts/NmZoZLneWo8?si=rlTK-5dB69kvUUvT" target="_blank">
+    <a href="https://youtube.com/shorts/NmZoZLneWo8" target="_blank">
       最高再生数の動画はこちら
     </a>
-    <div class="tag">おすすめ</div>
   </div>
 
   <a class="link" href="https://www.youtube.com/@wappy2896" target="_blank">
-    <span>▶ YouTube</span>
-    <div class="arrow">›</div>
+    ▶ YouTube <span class="arrow">›</span>
   </a>
 
   <a class="link" href="https://discord.gg/tZKmcYxAKW" target="_blank">
-    <span>💬 Discord</span>
-    <div class="arrow">›</div>
+    💬 Discord <span class="arrow">›</span>
   </a>
 
   <p>(c)wappy2896,naninuneno8603 改変・二次配布禁止</p>
 </div>
 
 <script>
-/* 星ランダム生成 */
+/* 星 */
 for(let i=0;i<90;i++){
   const s=document.createElement('div');
   s.className='star';
   s.style.left=Math.random()*innerWidth+'px';
   s.style.top=Math.random()*innerHeight+'px';
   s.style.opacity=Math.random();
-  s.style.transform=`scale(${Math.random()*1.6+0.4})`;
   document.body.appendChild(s);
 }
 </script>
 
 <script>
-/* ===== 登録者数：1日1回API取得 ===== */
+/* 登録者数 1日1回 */
 const API_KEY = "AIzaSyBzh3krEhy-szEg5yEwoVUQqR9_TOqOPto";
 const CHANNEL_ID = "UC5rcVpwFUjCfdVglFwrvlsQ";
 const today = new Date().toISOString().slice(0,10);
@@ -216,33 +189,19 @@ const savedDate = localStorage.getItem("subDate");
 const savedSubs = localStorage.getItem("subCount");
 
 if(savedDate === today && savedSubs){
-  document.getElementById("subCount").textContent =
-    "🎉 チャンネル登録者 " + savedSubs;
+  subCount.textContent = "🎉 チャンネル登録者 " + savedSubs;
 }else{
   fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`)
-    .then(res => res.json())
-    .then(data => {
-      const subs = Number(data.items[0].statistics.subscriberCount);
-      let text = subs.toLocaleString();
-
-      if(subs >= 10000){
-        text = (subs / 10000).toFixed(2) + "万人";
-      }
-
+    .then(r=>r.json())
+    .then(d=>{
+      const n = Number(d.items[0].statistics.subscriberCount);
+      const t = n>=10000 ? (n/10000).toFixed(2)+"万人" : n;
       localStorage.setItem("subDate", today);
-      localStorage.setItem("subCount", text);
-
-      document.getElementById("subCount").textContent =
-        "🎉 チャンネル登録者 " + text;
-    })
-    .catch(() => {
-      document.getElementById("subCount").textContent =
-        "🎉 チャンネル登録者 取得失敗";
+      localStorage.setItem("subCount", t);
+      subCount.textContent = "🎉 チャンネル登録者 " + t;
     });
 }
 </script>
 
 </body>
 </html>
-
-
