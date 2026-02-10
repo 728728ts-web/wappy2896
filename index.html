@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>wappy2896 公式サイト</title>
-  <link rel="icon" href="favicon.ico">
+<link rel="icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style>
 * { box-sizing: border-box; }
@@ -71,22 +71,10 @@ body {
 }
 
 @keyframes ring-puff {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  60% {
-    opacity: 0.8;
-    transform: scale(1.07);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.07);
-  }
+  0% { opacity: 0; transform: scale(0.95); }
+  20% { opacity: 1; transform: scale(1.05); }
+  60% { opacity: 0.8; transform: scale(1.07); }
+  100% { opacity: 0; transform: scale(1.07); }
 }
 
 h1 { margin:0; font-size:26px; font-weight:700; }
@@ -165,15 +153,14 @@ h1 { margin:0; font-size:26px; font-weight:700; }
 
   <h1>wappy2896</h1>
   <div class="sub">YouTuber</div>
-  <div class="subs">🎉 チャンネル登録者 1.61万人</div>
-  </p>
-  <script src="https://apis.google.com/js/platform.js"></script>
-<div class="g-ytsubscribe"
-     data-channelid="UC5rcVpwFUjCfdVglFwrvlsQ"
-     data-layout="full"
-     data-count="default">
-</div>
+  <div class="subs" id="subCount">🎉 チャンネル登録者 読み込み中...</div>
 
+  <script src="https://apis.google.com/js/platform.js"></script>
+  <div class="g-ytsubscribe"
+       data-channelid="UC5rcVpwFUjCfdVglFwrvlsQ"
+       data-layout="full"
+       data-count="default">
+  </div>
 
   <div class="featured">
     <h2>おすすめコンテンツ</h2>
@@ -210,8 +197,41 @@ for(let i=0;i<90;i++){
 }
 </script>
 
+<script>
+/* ===== 登録者数：1日1回API取得 ===== */
+const API_KEY = "AIzaSyBzh3krEhy-szEg5yEwoVUQqR9_TOqOPto";
+const CHANNEL_ID = "UC5rcVpwFUjCfdVglFwrvlsQ";
+const today = new Date().toISOString().slice(0,10);
+
+const savedDate = localStorage.getItem("subDate");
+const savedSubs = localStorage.getItem("subCount");
+
+if(savedDate === today && savedSubs){
+  document.getElementById("subCount").textContent =
+    "🎉 チャンネル登録者 " + savedSubs;
+}else{
+  fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+      const subs = Number(data.items[0].statistics.subscriberCount);
+      let text = subs.toLocaleString();
+
+      if(subs >= 10000){
+        text = (subs / 10000).toFixed(2) + "万人";
+      }
+
+      localStorage.setItem("subDate", today);
+      localStorage.setItem("subCount", text);
+
+      document.getElementById("subCount").textContent =
+        "🎉 チャンネル登録者 " + text;
+    })
+    .catch(() => {
+      document.getElementById("subCount").textContent =
+        "🎉 チャンネル登録者 取得失敗";
+    });
+}
+</script>
+
 </body>
 </html>
-
-
-
